@@ -1,4 +1,4 @@
-App: SeeAI
+#App: SeeAI
 Members:
 1. Do Duc Cuong
 2. Ngo Le Hoang
