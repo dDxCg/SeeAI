@@ -37,11 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   http: ^1.2.2
-  flutter_tts: ^3.2.2
+  flutter_tts: ^3.8.3
   vibration: ^1.7.4
   permission_handler: ^10.0.0
   image_picker: ^1.1.2
-  
+  shared_preferences: ^2.2.2
+  audioplayers: ^5.2.0
 
 dev_dependencies:
   flutter_test:
@@ -95,3 +96,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  
+  assets:
+    - sounds/
