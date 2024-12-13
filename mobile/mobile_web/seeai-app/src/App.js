@@ -16,7 +16,8 @@ const AccessibilityCameraApp = () => {
   const errorSound = new Audio(process.env.PUBLIC_URL + '/sounds/error.mp3');
   const successSound = new Audio(process.env.PUBLIC_URL + '/sounds/success.mp3');
   const [mode, setMode] = useState('caption');
-
+  
+  
   useEffect(() => {
     instructionAudio.load();
     const playInitialInstruction = async () => {
@@ -40,6 +41,7 @@ const AccessibilityCameraApp = () => {
       utterance.lang = 'en-US';
       utterance.rate = 0.8;
       window.speechSynthesis.speak(utterance);
+      console.log(text)
     }
   };
   
@@ -72,18 +74,20 @@ const AccessibilityCameraApp = () => {
         isSwitching = true;
         setMode('caption');
         speakDescription('Switched to image caption mode');
+        recognition.abort();
         setTimeout(() => {
           isSwitching = false;
-        }, 2000);
+        }, 20000);
       }
       
-      if (transcript.toLowerCase().includes('read') && !isSwitching) {
+      if (transcript.toLowerCase().includes('text') && !isSwitching) {
+        recognition.abort();
         isSwitching = true;
-        setMode('read');
+        setMode('text');
         speakDescription('Switched to text reading mode');
         setTimeout(() => {
           isSwitching = false;
-        }, 2000);
+        }, 20000);
       }
 
     };
@@ -180,6 +184,21 @@ const AccessibilityCameraApp = () => {
       speakDescription('Returned to camera mode');
     }
   };
+    
+  // useEffect(() => {
+  //   const handleFirstTouch = () => {
+  //     instructionAudio.play();
+  //     // Remove the listener after first touch
+  //     document.removeEventListener('touchstart', handleFirstTouch);
+  //   };
+
+  //   document.addEventListener('touchstart', handleFirstTouch);
+
+  //   // Cleanup
+  //   return () => {
+  //     document.removeEventListener('touchstart', handleFirstTouch);
+  //   };
+  // }, []);
 
   return (
     <div className="flex flex-col h-screen">
