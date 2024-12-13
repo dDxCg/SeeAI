@@ -9,10 +9,17 @@ python3 -m venv venv
 3. Install dependencies in `requirements.txt`
 
 ```bash
+sudo apt install python3-pip
 pip install -r requirements.txt 
 ```
 
-4. Locate to directory `api` and run CV server
+4. Install `uvicorn`
+
+```bash
+sudo apt install uvicorn
+```
+
+5. Locate to directory `api` and run CV server
 
 ```bash 
 uvicorn wrapper:app --reload

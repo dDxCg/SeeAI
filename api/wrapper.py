@@ -3,8 +3,19 @@ import os
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 import time
+import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins (use specific domains in production)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 endpoint = "https://seeai.cognitiveservices.azure.com/"
 key = os.getenv("AZURE_COMPUTER_VISION_KEY")
@@ -87,3 +98,12 @@ async def retrieve_text(file: UploadFile = File(...)):
 @app.get("/health")
 def check_health():
     return {"status":"ok"}
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "wrapper:app",
+        host="0.0.0.0",
+        port=8000,
+        ssl_certfile="./cert.pem",
+        ssl_keyfile="./key.pem",
+    )
