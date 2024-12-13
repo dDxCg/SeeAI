@@ -8,12 +8,12 @@
 ### Image Captioning 
 - Using AI (specifically Vision Language Models), SeeAI describes scenes, objects, people, and surrounding situations through text-to-speech technology.
 
-![](image2.png)
+<img src="image2.png" alt="" width="80" height="200">
 
 ### Reading text from image
 - SeeAI extracts text from images and converts it into clear audio narration for blind and visually impaired users.
 
-![](image1.png)
+<img src="image1.png" alt="" width="80" height="200">
 
 
 ## How to interact with SeeAI ? 
